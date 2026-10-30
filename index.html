@@ -313,12 +313,11 @@ footer nav{display:flex;flex-wrap:wrap;gap:18px;opacity:.8}
 .hero-media .credito{position:absolute;top:12px;left:12px;right:auto;background:rgba(10,28,18,.75);padding:6px 9px;font:800 10px var(--f-tit);letter-spacing:.12em;opacity:1}
 .hero-media .hero-score{position:absolute;left:-48px;bottom:-40px;width:300px;box-shadow:0 18px 40px rgba(0,0,0,.35)}
 @media (max-width:900px){.hero .marco{grid-template-columns:1fr}.hero-media .hero-score{position:relative;left:auto;bottom:auto;width:auto;max-width:360px;margin:-60px 16px 0 auto;}}
-.proy.vitacoco{background:var(--synagro);align-items:stretch}
-.proy.vitacoco::after{display:none}
-.proy.vitacoco .info{align-self:end}
+.proy video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2}
+.proy.vitacoco::after{background:linear-gradient(180deg,rgba(10,28,18,.28),transparent 32%,rgba(10,28,18,.5) 68%,rgba(10,28,18,.94))}
+.proy .credito{position:absolute;top:16px;right:16px;font:700 10px var(--f-tit);letter-spacing:.12em;text-transform:uppercase;color:var(--arena);opacity:.75;background:rgba(10,28,18,.35);padding:5px 8px;border-radius:999px;backdrop-filter:blur(4px)}
 .proy .cifra{font:900 20px var(--f-tit);color:var(--arena);display:flex;align-items:baseline}
 .proy .cifra b{font-size:clamp(96px,12vw,160px);line-height:.9;color:var(--dorado);margin-right:6px}
-.foto-pend{position:absolute;top:18px;right:18px;border:1px dashed rgba(239,230,210,.5);padding:6px 10px;font:800 10px var(--f-tit);letter-spacing:.12em;text-transform:uppercase;color:var(--arena);opacity:.8}
 .srv-lista{display:grid;gap:72px}
 .srv{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);gap:56px;align-items:center}
 .srv.invertido .srv-foto{order:2}
@@ -513,7 +512,7 @@ header.top.con-sombra{box-shadow:0 8px 30px rgba(0,0,0,.28)}
     <div class="collage" data-escalonar>
       <figure class="a rev"><img src="media/palma-lorica.jpg" alt="Swiner Russi recorriendo el cultivo de palma africana en Lorica, Córdoba" style="object-position:40% 50%"><figcaption>Palma · Lorica</figcaption></figure>
       <figure class="b rev"><img src="media/vivero.jpg" alt="Vivero de coco bajo polisombra con plántulas en hileras"><figcaption>Vivero de coco</figcaption></figure>
-      <figure class="c rev"><img src="media/palma-coco.jpg" alt="Palma de coco cargada de frutos"><figcaption>San Benito Abad</figcaption></figure>
+      <figure class="c rev"><img src="media/vitacoco-aerea.jpg" alt="Vista aérea de Vitacoco: lote de coco entre bosques de galería en el Meta" style="object-position:55% 45%"><figcaption>Vitacoco · Meta</figcaption></figure>
     </div>
     <div class="texto rev" style="--d:.15s">
       <p class="eyebrow">Quiénes somos</p>
@@ -682,12 +681,13 @@ header.top.con-sombra{box-shadow:0 8px 30px rgba(0,0,0,.28)}
     </div>
     <div class="proyectos" data-escalonar>
       <article class="proy rev grande vitacoco">
-        <span class="foto-pend">Foto de Vitacoco por cargar</span>
+        <video src="media/vitacoco-loop.mp4" poster="media/vitacoco-poster.jpg" autoplay muted loop playsinline preload="metadata" aria-label="Vista aérea de Vitacoco: hileras de palmas de coco jóvenes en San Carlos de Guaroa, Meta"></video>
+        <span class="credito">Dron · abril 2026</span>
         <div class="info">
           <span class="coord">Serranías de San Carlos de Guaroa, Meta</span>
           <p class="cifra"><b data-contar="50">50</b> ha</p>
           <h3>Vitacoco</h3>
-          <p>Cultivo de coco establecido en 2023 en los Llanos.</p>
+          <p>Cultivo de coco establecido en 2023 en los Llanos. Lo que ves es nuestro: así administramos lo que recomendamos.</p>
         </div>
       </article>
       <article class="proy rev">
@@ -855,6 +855,7 @@ header.top.con-sombra{box-shadow:0 8px 30px rgba(0,0,0,.28)}
         <div><span>WhatsApp</span><b id="wa-texto">+57 302 661 1282</b></div>
         <div><span>Instagram</span><a href="https://www.instagram.com/swiner.agro/" target="_blank" rel="noopener">@swiner.agro</a></div>
         <div><span>Grupo</span><a href="https://www.instagram.com/gruposynagro/" target="_blank" rel="noopener">@gruposynagro</a></div>
+        <div><span>TikTok</span><a href="https://www.tiktok.com/@synagro.consulting" target="_blank" rel="noopener">@synagro.consulting</a></div>
       </div>
     </div>
     <form class="formulario rev" id="form-lead" novalidate>
