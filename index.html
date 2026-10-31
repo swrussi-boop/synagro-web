@@ -343,6 +343,16 @@ footer nav{display:flex;flex-wrap:wrap;gap:18px;opacity:.8}
 .curva figcaption{font-size:12px;color:var(--tinta-2);margin-top:4px}
 @media (max-width:860px){.srv{grid-template-columns:1fr;gap:24px}.srv.invertido .srv-foto{order:0}.srv-foto{aspect-ratio:16/10}}
 .srv-foto .pronto.disp{background:var(--hoja);color:var(--bosque)}
+.srv-foto.srv-video{aspect-ratio:9/16;max-width:380px;width:100%;justify-self:center;background:var(--noche)}
+.srv-foto.srv-video video{width:100%;height:100%;object-fit:cover;display:block}
+.srv-foto .play{position:absolute;inset:0;width:100%;display:grid;place-content:center;justify-items:center;gap:14px;border:0;padding:0;background:linear-gradient(180deg,rgba(10,28,18,0) 45%,rgba(10,28,18,.55));color:var(--arena);cursor:pointer;font:800 12px var(--f-tit);letter-spacing:.14em;text-transform:uppercase}
+.srv-foto .play i{width:76px;height:76px;border-radius:50%;background:var(--hoja);color:var(--bosque);display:grid;place-content:center;box-shadow:0 12px 32px rgba(0,0,0,.4);transition:transform .25s cubic-bezier(.2,.7,.2,1)}
+.srv-foto .play:hover i{transform:scale(1.07)}
+.srv-foto .play svg{width:32px;height:32px;margin-left:5px}
+.srv-foto.reproduciendo .play{display:none}
+.srv-foto .dur{position:absolute;top:18px;left:18px;background:rgba(10,28,18,.75);color:var(--arena);font:800 11px var(--f-tit);letter-spacing:.14em;text-transform:uppercase;padding:7px 10px;pointer-events:none}
+.srv-foto.reproduciendo .dur{display:none}
+@media (max-width:860px){.srv-foto.srv-video{aspect-ratio:9/16;max-width:min(100%,340px);margin:0 auto}}
 .cohibra{display:grid;gap:8px;margin-top:8px;padding:16px 18px;border:1px dashed var(--linea-c);border-radius:8px}
 .cohibra-tag{justify-self:start;font:900 10px var(--f-tit);letter-spacing:.14em;text-transform:uppercase;background:var(--dorado);color:var(--noche);padding:5px 8px}
 .cohibra p{font-size:15px;opacity:.9}
@@ -451,6 +461,7 @@ header.top.con-sombra{box-shadow:0 8px 30px rgba(0,0,0,.28)}
   <symbol id="i-mute" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5 6 9H2v6h4l5 4z"/><path d="m23 9-6 6M17 9l6 6"/></g></symbol>
   <symbol id="i-sound" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5 6 9H2v6h4l5 4z"/><path d="M15.5 8.5a5 5 0 0 1 0 7M19 5a10 10 0 0 1 0 14"/></g></symbol>
   <symbol id="i-candado" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="4" y="10" width="16" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></g></symbol>
+  <symbol id="i-play" viewBox="0 0 24 24"><path fill="currentColor" d="M8 5v14l11-7z"/></symbol>
   <symbol id="i-flecha" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" d="M5 12h14M13 6l6 6-6 6"/></symbol>
 </svg>
 
@@ -544,7 +555,11 @@ header.top.con-sombra{box-shadow:0 8px 30px rgba(0,0,0,.28)}
     </div>
     <div class="srv-lista">
       <article class="srv">
-        <figure class="srv-foto rev rev-l"><img src="media/palma-coco.jpg" alt="Palma de coco con frutos"></figure>
+        <figure class="srv-foto srv-video">
+          <video src="media/pv1b.mp4" poster="media/pv1b.jpg" preload="none" playsinline aria-label="Video: lo que casi nadie revisa antes de sembrar coco"></video>
+          <span class="dur">Video · 1:25</span>
+          <button class="play" type="button" aria-label="Reproducir el video de la Evaluación de Predios"><i><svg><use href="#i-play"/></svg></i>Ver el video</button>
+        </figure>
         <div class="srv-txt rev" style="--d:.15s">
           <span class="num">01 · Evaluación de Predios Synagro</span>
           <h3>Conoce los riesgos antes de sembrar</h3>
@@ -578,7 +593,11 @@ header.top.con-sombra{box-shadow:0 8px 30px rgba(0,0,0,.28)}
       </article>
 
       <article class="srv invertido">
-        <figure class="srv-foto rev rev-r"><img src="media/finca-aerea.jpg" alt="Vista aérea de una finca con vivero de coco"></figure>
+        <figure class="srv-foto srv-video">
+          <video src="media/pe1.mp4" poster="media/pe1.jpg" preload="none" playsinline aria-label="Video: antes de sembrar coco, estructura tu proyecto"></video>
+          <span class="dur">Video · 1:17</span>
+          <button class="play" type="button" aria-label="Reproducir el video del Estructurador de Proyectos"><i><svg><use href="#i-play"/></svg></i>Ver el video</button>
+        </figure>
         <div class="srv-txt rev" style="--d:.15s">
           <span class="num">02 · Estructuración de proyecto</span>
           <h3>Entiende el riesgo antes de invertir un peso en el suelo</h3>
@@ -600,7 +619,7 @@ header.top.con-sombra{box-shadow:0 8px 30px rgba(0,0,0,.28)}
       </article>
 
       <article class="srv">
-        <figure class="srv-foto rev rev-l"><img src="media/vivero.jpg" alt="Plántulas de coco en vivero bajo polisombra"><span class="pronto disp">Disponible</span></figure>
+        <figure class="srv-foto rev rev-r"><img src="media/vivero.jpg" alt="Plántulas de coco en vivero bajo polisombra"><span class="pronto disp">Disponible</span></figure>
         <div class="srv-txt rev" style="--d:.15s">
           <span class="num">03 · Plántulas de coco</span>
           <h3>Siembra plantas que sí van a producir</h3>
@@ -902,6 +921,17 @@ function waUrl(msg){ return "https://wa.me/" + WA_NUMERO + "?text=" + encodeURIC
 if (WA_NUMERO) document.getElementById("wa-texto").textContent = "+" + WA_NUMERO.replace(/^(\d{2})(\d{3})(\d{3})(\d{4})$/, "$1 $2 $3 $4");
 document.querySelectorAll(".js-wa").forEach(a => { a.href = waUrl(a.dataset.msg); a.target = "_blank"; a.rel = "noopener"; });
 
+// Videos de producto: arrancan con sonido al tocar, uno a la vez, y se pausan al salir de pantalla
+document.querySelectorAll(".srv-video").forEach(f => {
+  const v = f.querySelector("video"), b = f.querySelector(".play");
+  const reiniciar = () => { f.classList.remove("reproduciendo"); v.removeAttribute("controls"); v.load(); };
+  b.addEventListener("click", () => {
+    document.querySelectorAll(".srv-video video").forEach(o => { if (o !== v && !o.paused) o.pause(); });
+    f.classList.add("reproduciendo"); v.setAttribute("controls", ""); v.muted = false; v.currentTime = 0; v.play().catch(()=>{});
+  });
+  v.addEventListener("ended", reiniciar);
+  if ("IntersectionObserver" in window) new IntersectionObserver(es => es.forEach(e => { if (!e.isIntersecting && !v.paused) v.pause(); }), {threshold: .2}).observe(v);
+});
 // Sonido de los reels: solo uno con sonido a la vez
 document.querySelectorAll(".reel").forEach(r => {
   const v = r.querySelector("video"), b = r.querySelector(".sonido");
