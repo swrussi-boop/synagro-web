@@ -353,6 +353,15 @@ footer nav{display:flex;flex-wrap:wrap;gap:18px;opacity:.8}
 .srv-foto .dur{position:absolute;top:18px;left:18px;background:rgba(10,28,18,.75);color:var(--arena);font:800 11px var(--f-tit);letter-spacing:.14em;text-transform:uppercase;padding:7px 10px;pointer-events:none}
 .srv-foto.reproduciendo .dur{display:none}
 @media (max-width:860px){.srv-foto.srv-video{aspect-ratio:9/16;max-width:min(100%,340px);margin:0 auto}}
+.srv-media{display:grid;gap:12px;justify-items:center;min-width:0}
+.srv.invertido .srv-media{order:2}
+.srv.invertido .srv-media .srv-foto{order:0}
+.clips{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;max-width:380px}
+.clips button{font:700 12px var(--f-tit);letter-spacing:.04em;padding:9px 13px;border:1px solid var(--linea-c);border-radius:999px;background:transparent;color:var(--arena);opacity:.8;cursor:pointer;transition:background .2s,opacity .2s}
+.clips button:hover{opacity:1;border-color:var(--hoja)}
+.clips button.on{background:var(--hoja);color:var(--bosque);border-color:var(--hoja);opacity:1}
+.clips button b{font-weight:900;margin-right:4px}
+@media (max-width:860px){.srv.invertido .srv-media{order:0}}
 .cohibra{display:grid;gap:8px;margin-top:8px;padding:16px 18px;border:1px dashed var(--linea-c);border-radius:8px}
 .cohibra-tag{justify-self:start;font:900 10px var(--f-tit);letter-spacing:.14em;text-transform:uppercase;background:var(--dorado);color:var(--noche);padding:5px 8px}
 .cohibra p{font-size:15px;opacity:.9}
@@ -593,11 +602,18 @@ header.top.con-sombra{box-shadow:0 8px 30px rgba(0,0,0,.28)}
       </article>
 
       <article class="srv invertido">
+        <div class="srv-media">
         <figure class="srv-foto srv-video">
           <video src="media/pe1.mp4" poster="media/pe1.jpg" preload="none" playsinline aria-label="Video: antes de sembrar coco, estructura tu proyecto"></video>
-          <span class="dur">Video · 1:17</span>
+          <span class="dur">Video 1 de 3 · 1:17</span>
           <button class="play" type="button" aria-label="Reproducir el video del Estructurador de Proyectos"><i><svg><use href="#i-play"/></svg></i>Ver el video</button>
         </figure>
+        <div class="clips" role="tablist" aria-label="Videos del Estructurador de Proyectos">
+          <button type="button" class="on" role="tab" aria-selected="true" data-src="media/pe1.mp4" data-poster="media/pe1.jpg" data-dur="1:17" data-label="Video: antes de sembrar coco, estructura tu proyecto"><b>1</b>Si vas a sembrar</button>
+          <button type="button" role="tab" aria-selected="false" data-src="media/pe2.mp4" data-poster="media/pe2.jpg" data-dur="1:15" data-label="Video: si vas a pedir un crédito o buscar un socio, llega con números"><b>2</b>Crédito o socio</button>
+          <button type="button" role="tab" aria-selected="false" data-src="media/pe3.mp4" data-poster="media/pe3.jpg" data-dur="1:27" data-label="Video: en coco, los errores se pagan años después; lo que aprendimos"><b>3</b>Lo que aprendimos</button>
+        </div>
+        </div>
         <div class="srv-txt rev" style="--d:.15s">
           <span class="num">02 · Estructuración de proyecto</span>
           <h3>Entiende el riesgo antes de invertir un peso en el suelo</h3>
@@ -931,6 +947,16 @@ document.querySelectorAll(".srv-video").forEach(f => {
   });
   v.addEventListener("ended", reiniciar);
   if ("IntersectionObserver" in window) new IntersectionObserver(es => es.forEach(e => { if (!e.isIntersecting && !v.paused) v.pause(); }), {threshold: .2}).observe(v);
+  // Selector de clips (Estructurador): cambia el video y vuelve a la portada
+  const clips = f.parentElement.querySelectorAll(".clips button");
+  clips.forEach((c, i) => c.addEventListener("click", () => {
+    if (c.classList.contains("on")) return;
+    clips.forEach(o => { o.classList.remove("on"); o.setAttribute("aria-selected", "false"); });
+    c.classList.add("on"); c.setAttribute("aria-selected", "true");
+    v.pause(); f.classList.remove("reproduciendo"); v.removeAttribute("controls");
+    v.setAttribute("poster", c.dataset.poster); v.setAttribute("src", c.dataset.src); v.setAttribute("aria-label", c.dataset.label); v.load();
+    f.querySelector(".dur").textContent = `Video ${i + 1} de 3 · ${c.dataset.dur}`;
+  }));
 });
 // Sonido de los reels: solo uno con sonido a la vez
 document.querySelectorAll(".reel").forEach(r => {
